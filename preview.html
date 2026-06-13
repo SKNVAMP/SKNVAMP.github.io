@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>91NE • CLIENT PREVIEW</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        body, html{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:'Orbitron',monospace;color:#fff;position:relative}
+        
+        .bg{ position:absolute;inset:0;background:url('https://via.placeholder.com/1920x1080/111/222?text=91NE+CLIENT+BACKGROUND') center/cover;filter:blur(12px);opacity:0.6}
+        
+        .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:2}
+        .soon{font-size:clamp(50px,8vw,120px);font-weight:900;letter-spacing:8px;text-align:center;line-height:1;margin-bottom:30px}
+        .soon::after{content:'SOON COMING';display:block;font-size:0.4em;letter-spacing:12px;opacity:0.6;margin-top:10px}
+        
+        .chain{position:absolute;width:80px;height:80px;background:rgba(255,255,255,0.08);border:2px solid #666;border-radius:50%;animation:chainFloat 12s linear infinite;opacity:0.4}
+        @keyframes chainFloat{0%{transform:translateY(100vh) rotate(0deg)}100%{transform:translateY(-100px) rotate(360deg)}}
+        
+        .gui-mock{position:relative;z-index:3;width:85%;max-width:900px;border:2px solid #555;background:rgba(10,10,10,0.95);padding:30px;border-radius:12px}
+        .title-bar{background:#222;padding:12px;text-align:center;font-size:18px;letter-spacing:3px}
+    </style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="overlay">
+    <div class="soon">CLICK GUI PREVIEW</div>
+    <div class="gui-mock">
+        <div class="title-bar">91NE CLIENT • INTERNAL GUI</div>
+        <div style="padding:60px;text-align:center;font-size:22px;color:#aaa">
+            FULL CLIENT GUI PREVIEW<br>
+            <span style="font-size:16px;opacity:0.6">(Coming Soon)</span>
+        </div>
+    </div>
+    <a href="index.html" style="margin-top:40px;color:#888;text-decoration:none">← Back to Home</a>
+</div>
+
+<!-- Animated Chains -->
+<script>
+    for(let i=0;i<12;i++){
+        const c = document.createElement('div');
+        c.className = 'chain';
+        c.style.left = Math.random()*100 + 'vw';
+        c.style.animationDelay = '-' + Math.random()*15 + 's';
+        c.style.width = c.style.height = (40 + Math.random()*60) + 'px';
+        document.body.appendChild(c);
+    }
+</script>
+</body>
+</html>
