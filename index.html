@@ -7,117 +7,70 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--border:rgba(255,255,255,0.1);--glow:rgba(255,255,255,0.15);--particle:150,180,255;}
         body{background:#000;color:#fff;font-family:'Space Grotesk',sans-serif;overflow-x:hidden;cursor:none}
 
-        /* BOOT ANIMATION */
-        #boot-screen{position:fixed;inset:0;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#0f0;font-family:'Orbitron',monospace;opacity:1;transition:opacity 1.5s}
+        /* BOOT */
+        #boot-screen{position:fixed;inset:0;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#0f0;font-family:'Orbitron',monospace;transition:opacity 1.5s}
         .boot-text{font-size:15px;letter-spacing:4px;animation:typing 2.8s steps(45,end) forwards, blink 0.8s infinite}
         @keyframes typing{from{width:0}to{width:100%}}
         @keyframes blink{50%{opacity:0}}
-        .glitch{animation:glitch 0.5s linear infinite}
-        @keyframes glitch{0%,100%{transform:translate(0)}20%{transform:translate(-3px,3px)}40%{transform:translate(-3px,-3px)}60%{transform:translate(3px,3px)}80%{transform:translate(3px,-3px)}}
 
-        /* CURSOR - FIXED & SMOOTH */
+        /* CURSOR */
         #cur{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
-        #cur-diamond{width:22px;height:22px;border:2px solid rgba(255,255,255,0.95);transform:rotate(45deg);background:rgba(255,255,255,0.06);filter:drop-shadow(0 0 12px #fff);animation:curSpin 3.8s linear infinite}
-        #cur-dot{width:7px;height:7px;background:#fff;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-        #cur-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;animation:ringPulse 1.6s ease-in-out infinite}
-        @keyframes curSpin{to{transform:rotate(45deg) rotateZ(360deg)}}
+        #cur-diamond{width:22px;height:22px;border:2px solid rgba(255,255,255,0.95);transform:rotate(45deg);background:rgba(255,255,255,0.06);filter:drop-shadow(0 0 12px #fff)}
+        #cur-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;animation:ringPulse 1.6s infinite}
         @keyframes ringPulse{0%,100%{opacity:0.2;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.6;transform:translate(-50%,-50%) scale(1.4)}}
 
         nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(0,0,0,0.95),transparent)}
         .nav-logo{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;letter-spacing:6px}
-        .nav-links{display:flex;gap:30px;align-items:center}
-        .nav-links a{font-size:11px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,0.6);text-decoration:none;text-transform:uppercase}
-        .preview-btn{padding:10px 28px;background:rgba(255,255,255,0.1);border:1px solid #fff;border-radius:50px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:0.3s}
+        .preview-btn{padding:12px 32px;background:rgba(255,255,255,0.1);border:1px solid #fff;border-radius:50px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:0.3s}
         .preview-btn:hover{background:#fff;color:#000;transform:scale(1.05)}
 
         #hero{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-        .hero-logo{width:160px;height:160px;animation:logoFloat 6s ease-in-out infinite}
-        @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
         .hero-title{font-family:'Orbitron',monospace;font-size:clamp(70px,12vw,140px);font-weight:900;background:linear-gradient(#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .hero-sub{font-size:13px;letter-spacing:6px;color:rgba(255,255,255,0.4);margin:20px 0 50px}
-
-        section.wrap{padding:100px 60px;max-width:1200px;margin:0 auto}
-        .sec-title{font-family:'Orbitron',monospace;font-size:48px;line-height:1.1;margin-bottom:40px}
-        .mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-        .mod-card{padding:24px;background:rgba(255,255,255,0.03);border:1px solid var(--border);transition:0.3s}
-        .mod-card:hover{transform:translateY(-8px);border-color:#fff}
-
-        footer{padding:40px;text-align:center;font-size:12px;opacity:0.4}
     </style>
 </head>
 <body>
 
 <!-- BOOT SCREEN -->
 <div id="boot-screen">
-    <div class="glitch" style="font-size:32px;margin-bottom:30px">91NE CLIENT</div>
+    <div style="font-size:32px;margin-bottom:30px">91NE CLIENT</div>
     <div class="boot-text">INITIALIZING CORE SYSTEMS...</div>
 </div>
 
 <!-- CURSOR -->
 <div id="cur">
     <div id="cur-ring"></div>
-    <div id="cur-diamond"><div id="cur-dot"></div></div>
+    <div id="cur-diamond"></div>
 </div>
 
 <!-- NAV -->
 <nav>
     <div class="nav-logo">91NE</div>
-    <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#discord">Discord</a>
+    <div>
         <a href="preview.html" class="preview-btn">PREVIEW CLIENT</a>
     </div>
 </nav>
 
-<main>
-    <!-- HERO -->
-    <section id="hero">
-        <img src="https://via.placeholder.com/300x300/111/fff?text=91NE" class="hero-logo" alt="91NE">
-        <h1 class="hero-title">91NE</h1>
-        <p class="hero-sub">PRECISION ENGINEERED • BUILT DIFFERENT</p>
-        <a href="https://discord.gg/2HPvTq2VkW" class="preview-btn" style="font-size:15px;padding:16px 40px">GET ACCESS</a>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="wrap" id="features">
-        <h2 class="sec-title">Built For Competitors</h2>
-        <div class="mod-grid">
-            <div class="mod-card"><strong>AimAssist</strong><br>Smooth close-range targeting</div>
-            <div class="mod-card"><strong>Reach</strong><br>Extended attack distance</div>
-            <div class="mod-card"><strong>Velocity</strong><br>Reduced knockback</div>
-            <div class="mod-card"><strong>AutoClicker</strong><br>Fast & consistent</div>
-            <div class="mod-card"><strong>Search / ESP</strong><br>See through walls</div>
-            <div class="mod-card"><strong>Scaffold</strong><br>Smart bridging</div>
-        </div>
-    </section>
-</main>
-
-<footer>© 2026 91NE • ALL RIGHTS RESERVED</footer>
+<!-- HERO -->
+<section id="hero">
+    <h1 class="hero-title">91NE</h1>
+    <p style="margin:25px 0 50px;letter-spacing:6px;color:#888;font-size:15px">PRECISION ENGINEERED • BUILT DIFFERENT</p>
+    <a href="https://discord.gg/2HPvTq2VkW" class="preview-btn" style="font-size:16px;padding:18px 48px">GET ACCESS</a>
+</section>
 
 <script>
 // Boot Screen
 setTimeout(() => {
     document.getElementById('boot-screen').style.opacity = '0';
-    setTimeout(() => document.getElementById('boot-screen').remove(), 1600);
-}, 2400);
+}, 2200);
 
 // Smooth Cursor
 const cur = document.getElementById('cur');
-let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
-
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-function cursorLoop() {
-    cx += (mx - cx) * 0.18;
-    cy += (my - cy) * 0.18;
-    cur.style.left = cx + 'px';
-    cur.style.top = cy + 'px';
-    requestAnimationFrame(cursorLoop);
-}
-cursorLoop();
+document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top = e.clientY + 'px';
+});
 </script>
 </body>
 </html>
